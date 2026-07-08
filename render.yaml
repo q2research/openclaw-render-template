@@ -4,6 +4,7 @@ services:
     name: AlphaClaw
     plan: starter
     healthCheckPath: /health
+    region: frankfurt
     envVars:
       - key: SETUP_PASSWORD
         sync: false
