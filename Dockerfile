@@ -7,6 +7,9 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install --omit=dev --prefer-online && npm cache clean --force
 
+COPY render-start.sh ./
+RUN chmod +x ./render-start.sh
+
 ENV PATH="/data/.bun/bin:/app/node_modules/.bin:$PATH"
 ENV ALPHACLAW_ROOT_DIR=/data
 
@@ -15,4 +18,4 @@ RUN mkdir -p /data
 EXPOSE 3000
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["alphaclaw", "start"]
+CMD ["./render-start.sh"]
