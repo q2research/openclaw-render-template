@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install --omit=dev --prefer-online && npm cache clean --force
 
-ENV PATH="/app/node_modules/.bin:$PATH"
+ENV PATH="/data/.bun/bin:/app/node_modules/.bin:$PATH"
 ENV ALPHACLAW_ROOT_DIR=/data
 
 RUN mkdir -p /data
@@ -15,4 +15,4 @@ RUN mkdir -p /data
 EXPOSE 3000
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["/bin/sh", "-c", "export PATH=/app/node_modules/.bin:/data/.bun/bin:$PATH; exec alphaclaw start"]
+CMD ["alphaclaw", "start"]
